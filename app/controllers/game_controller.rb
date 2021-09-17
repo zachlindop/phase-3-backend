@@ -16,13 +16,16 @@ class GameController < ApplicationController
         end
 
         post '/games' do
-            Game.create.to_json
+            game = Game.create(params[:game])
+            game.to_json
         end
 
         delete '/games/:id' do
+            puts "hey: params #{params.inspect}"
             game = Game.find(params[:id])
-            game.destroy_all
-            #game.to_json
+            puts"hey"
+            game.destroy
+            { }
         end
 
         private
